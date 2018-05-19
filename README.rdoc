@@ -1,28 +1,5 @@
-== README
+#top
+https://7c6710cf9f7243ce9bd4d98b6578b792.vfs.cloud9.us-east-2.amazonaws.com/
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+#phpmyadmin
+https://7c6710cf9f7243ce9bd4d98b6578b792.vfs.cloud9.us-east-2.amazonaws.com:8081/phpmyadmin/#PMAURL-0:index.php?db=&table=&server=1&target=&lang=ja&collation_connection=utf8_general_ci&token=cd7fc8691a1091023adb5ead6a17e508

@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
     
-    before_action :move_to_index, except: :index
+    before_action :move_to_index, except: [:index, :show]
     
     #ActionName
     def index
@@ -37,6 +37,10 @@ class TweetsController < ApplicationController
     def update
         tweet = Tweet.find(params[:id])
         tweet.update(tweet_params) if tweet.user_id == current_user.id
+    end
+    
+    def show
+        @tweet = Tweet.find(params[:id])
     end
     
     private
