@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # get   'users/:id'       =>  'users#show'
   # get   'tweets/:id'      =>  'tweets#show'
   resources :tweets  do 
-    resources :commnet, only: [:create]
+    resources :comments, only: [:create]
   end
   resources :users, only: [:show]
 end
