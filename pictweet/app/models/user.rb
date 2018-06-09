@@ -5,5 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :tweets
   # has_many  :comments
-  has_many :comments 
+  has_many :comments
+  #バリデーションの追加
+  validates :nickname, presence: true, length: { maximum: 6 }
 end
