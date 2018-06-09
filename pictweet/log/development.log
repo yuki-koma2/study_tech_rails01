@@ -1,0 +1,115 @@
+  [1m[36m (130.3ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (20.6ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateTweets (20180205080610)
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/Komatsu/Desktop/Study/Engineer/Github/study_tech_rails01/pictweet/db/migrate/20180205080610_create_tweets.rb:7)
+  [1m[35m (14.5ms)[0m  CREATE TABLE `tweets` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `text` text, `image` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (2.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20180205080610')
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+Migrating to DeviseCreateUsers (20180224070441)
+  [1m[35m (11.3ms)[0m  CREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (12.2ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email`  ON `users` (`email`) [0m
+  [1m[35m (14.7ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token`  ON `users` (`reset_password_token`) 
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20180224070441')
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+Migrating to AddNicknameToUsers (20180226084401)
+  [1m[35m (19.6ms)[0m  ALTER TABLE `users` ADD `nickname` varchar(255)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20180226084401')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddUserIdToTweets (20180226085605)
+  [1m[35m (15.7ms)[0m  ALTER TABLE `tweets` ADD `user_id` int(11)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20180226085605')
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to RemoveNameFromTweets (20180322142022)
+  [1m[35m (18.4ms)[0m  ALTER TABLE `tweets` DROP `name`
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20180322142022')
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+Migrating to CreateComments (20180519045557)
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/Komatsu/Desktop/Study/Engineer/Github/study_tech_rails01/pictweet/db/migrate/20180519045557_create_comments.rb:7)
+  [1m[35m (9.4ms)[0m  CREATE TABLE `comments` (`id` int(11) auto_increment PRIMARY KEY, `user_id` int(11), `tweet_id` int(11), `text` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20180519045557')
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (1.4ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'pictweet_development'
+  AND fk.table_name = 'comments'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `comments`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'pictweet_development'
+  AND fk.table_name = 'tweets'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `tweets`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'pictweet_development'
+  AND fk.table_name = 'users'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `users`
+
+
+Started GET "/" for ::1 at 2018-06-09 10:54:19 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by TweetsController#index as HTML
+  [1m[35mTweet Load (0.5ms)[0m  SELECT  `tweets`.* FROM `tweets`  ORDER BY created_at DESC LIMIT 5 OFFSET 0
+  Rendered tweets/index.html.erb within layouts/application (18.9ms)
+Completed 200 OK in 2230ms (Views: 2206.7ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/assets/comments-539b1b2d248fcacaf845c897cae976a6.css?body=1" for ::1 at 2018-06-09 10:54:21 +0900
+
+
+Started GET "/assets/setting-5e8da40f8600aa282b049f4132262140.css?body=1" for ::1 at 2018-06-09 10:54:21 +0900
+
+
+Started GET "/assets/style-74f42a51adbebf6352b40c1673f901c9.css?body=1" for ::1 at 2018-06-09 10:54:21 +0900
+
+
+Started GET "/assets/tweets-539b1b2d248fcacaf845c897cae976a6.css?body=1" for ::1 at 2018-06-09 10:54:21 +0900
+
+
+Started GET "/assets/users-539b1b2d248fcacaf845c897cae976a6.css?body=1" for ::1 at 2018-06-09 10:54:21 +0900
+
+
+Started GET "/assets/application-22409244d17c184586ab07572e54b760.css?body=1" for ::1 at 2018-06-09 10:54:21 +0900
+
+
+Started GET "/assets/jquery-24e9e31ece1989ef3791bcd53ea38cab.js?body=1" for ::1 at 2018-06-09 10:54:21 +0900
+
+
+Started GET "/assets/jquery_ujs-e9c99e4aa7db66a7f23b948d7d043bd8.js?body=1" for ::1 at 2018-06-09 10:54:21 +0900
+
+
+Started GET "/assets/turbolinks-dfadbfad3c1175de4c9257125fee9f94.js?body=1" for ::1 at 2018-06-09 10:54:21 +0900
+
+
+Started GET "/assets/comments-f6c6ef02137813db1b2df8e2c31983a1.js?body=1" for ::1 at 2018-06-09 10:54:21 +0900
+
+
+Started GET "/assets/tweets-f6c6ef02137813db1b2df8e2c31983a1.js?body=1" for ::1 at 2018-06-09 10:54:21 +0900
+
+
+Started GET "/assets/users-f6c6ef02137813db1b2df8e2c31983a1.js?body=1" for ::1 at 2018-06-09 10:54:21 +0900
+
+
+Started GET "/assets/application-13a0486ecbdd3971e6056abdff4e2fb4.js?body=1" for ::1 at 2018-06-09 10:54:21 +0900
