@@ -113,3 +113,50 @@ Started GET "/assets/users-f6c6ef02137813db1b2df8e2c31983a1.js?body=1" for ::1 a
 
 
 Started GET "/assets/application-13a0486ecbdd3971e6056abdff4e2fb4.js?body=1" for ::1 at 2018-06-09 10:54:21 +0900
+
+
+Started GET "/" for ::1 at 2018-08-05 13:36:40 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (48.5ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by TweetsController#index as HTML
+  [1m[35mTweet Load (9.5ms)[0m  SELECT  `tweets`.* FROM `tweets`  ORDER BY created_at DESC LIMIT 5 OFFSET 0
+  Rendered tweets/index.html.erb within layouts/application (49.5ms)
+Completed 200 OK in 453ms (Views: 398.7ms | ActiveRecord: 13.0ms)
+
+
+Started GET "/assets/comments-539b1b2d248fcacaf845c897cae976a6.css?body=1" for ::1 at 2018-08-05 13:36:41 +0900
+
+
+Started GET "/assets/users-539b1b2d248fcacaf845c897cae976a6.css?body=1" for ::1 at 2018-08-05 13:36:41 +0900
+
+
+Started GET "/assets/tweets-539b1b2d248fcacaf845c897cae976a6.css?body=1" for ::1 at 2018-08-05 13:36:41 +0900
+
+
+Started GET "/assets/application-22409244d17c184586ab07572e54b760.css?body=1" for ::1 at 2018-08-05 13:36:41 +0900
+
+
+Started GET "/assets/setting-5e8da40f8600aa282b049f4132262140.css?body=1" for ::1 at 2018-08-05 13:36:41 +0900
+
+
+Started GET "/assets/style-74f42a51adbebf6352b40c1673f901c9.css?body=1" for ::1 at 2018-08-05 13:36:41 +0900
+
+
+Started GET "/assets/jquery-24e9e31ece1989ef3791bcd53ea38cab.js?body=1" for ::1 at 2018-08-05 13:36:41 +0900
+
+
+Started GET "/assets/jquery_ujs-e9c99e4aa7db66a7f23b948d7d043bd8.js?body=1" for ::1 at 2018-08-05 13:36:41 +0900
+
+
+Started GET "/assets/turbolinks-dfadbfad3c1175de4c9257125fee9f94.js?body=1" for ::1 at 2018-08-05 13:36:41 +0900
+
+
+Started GET "/assets/comments-f6c6ef02137813db1b2df8e2c31983a1.js?body=1" for ::1 at 2018-08-05 13:36:41 +0900
+
+
+Started GET "/assets/tweets-f6c6ef02137813db1b2df8e2c31983a1.js?body=1" for ::1 at 2018-08-05 13:36:41 +0900
+
+
+Started GET "/assets/users-f6c6ef02137813db1b2df8e2c31983a1.js?body=1" for ::1 at 2018-08-05 13:36:41 +0900
+
+
+Started GET "/assets/application-13a0486ecbdd3971e6056abdff4e2fb4.js?body=1" for ::1 at 2018-08-05 13:36:41 +0900
