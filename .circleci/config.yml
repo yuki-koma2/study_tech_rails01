@@ -36,7 +36,7 @@ jobs:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-      # Database setup
+      # Database setup 微修正
       # - run: bundle exec rake db:create
       # - run: bundle exec rake db:schema:load
       - run:
