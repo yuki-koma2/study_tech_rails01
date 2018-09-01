@@ -18,8 +18,10 @@ jobs:
 
     steps:
       - checkout
-
-      # # Download and cache dependencies
+      -run:
+        name:Test echo
+        command: echo 'hello CircleCI'
+      # Download and cache dependencies
       # - restore_cache:
       #     keys:
       #     - v1-dependencies-{{ checksum "Gemfile.lock" }}
@@ -35,32 +37,32 @@ jobs:
       #     paths:
       #       - ./vendor/bundle
       #     key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-
-      # Database setup 微修正
-      # - run: bundle exec rake db:create
-      # - run: bundle exec rake db:schema:load
-      - run:
-          name: Database setup
-          command: |
-            bundle exec rake db:create db:schema:load --trace
-            bundle exec rake db:migrate
-
-      # run tests!
-      - run:
-          name: run tests
-          command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
-
-            bundle exec rspec --format progress \
-                            --format RspecJunitFormatter \
-                            --out /tmp/test-results/rspec.xml \
-                            --format progress \
-                            $TEST_FILES
-
-      # collect reports
-      - store_test_results:
-          path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
+      #
+      # # Database setup 微修正
+      # # - run: bundle exec rake db:create
+      # # - run: bundle exec rake db:schema:load
+      # - run:
+      #     name: Database setup
+      #     command: |
+      #       bundle exec rake db:create db:schema:load --trace
+      #       bundle exec rake db:migrate
+      #
+      # # run tests!
+      # - run:
+      #     name: run tests
+      #     command: |
+      #       mkdir /tmp/test-results
+      #       TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+      #
+      #       bundle exec rspec --format progress \
+      #                       --format RspecJunitFormatter \
+      #                       --out /tmp/test-results/rspec.xml \
+      #                       --format progress \
+      #                       $TEST_FILES
+      #
+      # # collect reports
+      # - store_test_results:
+      #     path: /tmp/test-results
+      # - store_artifacts:
+      #     path: /tmp/test-results
+      #     destination: test-results
