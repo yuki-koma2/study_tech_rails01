@@ -18,49 +18,51 @@ jobs:
 
     steps:
       - checkout
-
+      -run:
+        name:Test echo
+        command: echo 'hello CircleCI'
       # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "Gemfile.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
-      - run:
-          name: install dependencies
-          command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
-
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-
-      # Database setup
-      # - run: bundle exec rake db:create
-      # - run: bundle exec rake db:schema:load
-      - run:
-          name: Database setup
-          command: |
-            bundle exec rake db:create db:schema:load --trace
-            bundle exec rake db:migrate
-
-      # run tests!
-      - run:
-          name: run tests
-          command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
-
-            bundle exec rspec --format progress \
-                            --format RspecJunitFormatter \
-                            --out /tmp/test-results/rspec.xml \
-                            --format progress \
-                            $TEST_FILES
-
-      # collect reports
-      - store_test_results:
-          path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
+      # - restore_cache:
+      #     keys:
+      #     - v1-dependencies-{{ checksum "Gemfile.lock" }}
+      #     # fallback to using the latest cache if no exact match is found
+      #     - v1-dependencies-
+      #
+      # - run:
+      #     name: install dependencies
+      #     command: |
+      #       bundle install --jobs=4 --retry=3 --path vendor/bundle
+      #
+      # - save_cache:
+      #     paths:
+      #       - ./vendor/bundle
+      #     key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      #
+      # # Database setup 微修正
+      # # - run: bundle exec rake db:create
+      # # - run: bundle exec rake db:schema:load
+      # - run:
+      #     name: Database setup
+      #     command: |
+      #       bundle exec rake db:create db:schema:load --trace
+      #       bundle exec rake db:migrate
+      #
+      # # run tests!
+      # - run:
+      #     name: run tests
+      #     command: |
+      #       mkdir /tmp/test-results
+      #       TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+      #
+      #       bundle exec rspec --format progress \
+      #                       --format RspecJunitFormatter \
+      #                       --out /tmp/test-results/rspec.xml \
+      #                       --format progress \
+      #                       $TEST_FILES
+      #
+      # # collect reports
+      # - store_test_results:
+      #     path: /tmp/test-results
+      # - store_artifacts:
+      #     path: /tmp/test-results
+      #     destination: test-results
